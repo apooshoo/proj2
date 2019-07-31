@@ -39,14 +39,28 @@ module.exports = (dbPoolInstance) => {
 
     // };
     let getAll = (callback) => {
-        console.log("entering modelTest")
+        console.log("entering model getAll")
+        let query = `SELECT * FROM items`;
+        dbPoolInstance.query(query, (err, result) => {
+            if(err){
+                callback(err, null);
+                console.log(err.stack);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            }
+        });
+    };
+    let create = (requestdata, callback) => {
+        console.log("entering model create");
+        console.log("request data in model: ", requestdata);
     };
 
 
 
     return {
-        // getAllQuotes,
-        // createQuote
-        getAll
+        getAll,
+        create
     };
 };

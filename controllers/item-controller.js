@@ -32,10 +32,23 @@ module.exports = (db) => {
         console.log("entering getAllItemsCC");
         db.item.getAll((err, result) => {
             console.log("back in getAllItemsCC")
-
+            console.log("result in getAllItemsCC: ", result);
+            let data = {
+                itemsData: result
+            };
+            res.render('home', data);
         });
-        res.render('home');
+
     };
+
+    let createItemCC = (req, res) => {
+        console.log("entering createItemCC");
+        console.log("req.body: ", req.body);
+        db.item.create(req.body, (err, result) => {
+            console.log("back in createItemCC")
+        });
+        res.redirect('/');
+    }
 
    /**
      * ===========================================
@@ -43,9 +56,8 @@ module.exports = (db) => {
      * ===========================================
      */
     return {
-        // register: registerControllerCallback
         getAllItems: getAllItemsCC,
-        // createQuote: createQuoteCC
+        createItem: createItemCC
     };
 
 };
