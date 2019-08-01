@@ -9,30 +9,11 @@ module.exports = (db) => {
     //  * ===========================================
 
 
-    // let getAllQuotesCC = (req, res) => {
-    //     console.log("entering controller");
-    //     db.quote.getAllQuotes((err, result) => {
-    //         console.log("RESULT IN CC: ", result);
-    //         let data = {
-    //             quotesData: result
-    //         };
-    //         res.render('home', data);
-    //     });
-    // };
-
-    // let createQuoteCC = (req, res) => {
-    //     console.log("entering createQuoteCC");
-    //     console.log("REQ.BODY: ", req.body);
-    //     db.quote.createQuote(req.body, (err, result) => {
-    //         console.log("RESULT IN CC: ", result);
-    //     });
-    // };
-
     let getAllItemsCC = (req, res) => {
         console.log("entering getAllItemsCC");
         db.item.getAll((err, result) => {
             console.log("back in getAllItemsCC")
-            console.log("result in getAllItemsCC: ", result);
+            // console.log("result in getAllItemsCC: ", result);
             let data = {
                 itemsData: result
             };
@@ -45,10 +26,38 @@ module.exports = (db) => {
         console.log("entering createItemCC");
         console.log("req.body: ", req.body);
         db.item.create(req.body, (err, result) => {
-            console.log("back in createItemCC")
+            console.log("back in createItemCC");
+            console.log(result)
+            res.redirect('/items/');
         });
-        res.redirect('/');
     }
+
+    let editItemCC = (req, res) => {
+        console.log("entering editItemCC");
+        let requestdata = {
+            body: req.body,
+            params: req.params
+        }
+        console.log("REQ DATA: ", requestdata)
+        db.item.edit(requestdata, (err, result) => {
+            console.log("back in editItemCC");
+            console.log("edited result in editItemCC :", result);
+            res.redirect('/items');
+        });
+
+    };
+
+    let deleteItemCC = (req, res) => {
+        console.log("entering deleteItemCC");
+        console.log("REQ BODY: ", req.params);
+
+        db.item.del(req.params, (err, result) => {
+            console.log("back in deleteItemCC");
+            console.log("Deleted: ", result);
+            res.redirect('/items');
+        });
+
+    };
 
    /**
      * ===========================================
@@ -57,7 +66,9 @@ module.exports = (db) => {
      */
     return {
         getAllItems: getAllItemsCC,
-        createItem: createItemCC
+        createItem: createItemCC,
+        editItem: editItemCC,
+        deleteItem: deleteItemCC
     };
 
 };

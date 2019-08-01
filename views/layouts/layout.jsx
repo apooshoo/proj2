@@ -15,7 +15,7 @@ class Layout extends React.Component {
 
             <body>
             <nav className="navbar navbar-expand-lg sticky-top justify-content-center navbrandrow">
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand" href="/items/">
                     <img src="./dollar.png" width="40" height="40"
                          className="d-inline-block align-top mr-3" alt=""/>
                     My Planner
@@ -27,7 +27,7 @@ class Layout extends React.Component {
             </div>
 
 
-
+            <script src="./script.js"/>
             </body>
             </html>
         );

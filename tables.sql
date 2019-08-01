@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS items (
 	name TEXT,
 	amount INTEGER,
 	recurring BOOLEAN,
-	due_date TEXT,
+	due_date TIMESTAMPTZ DEFAULT NULL,
 	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	creditor TEXT,
