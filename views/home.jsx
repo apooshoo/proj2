@@ -19,8 +19,31 @@ class Home extends React.Component {
         <Layout>
             <div className="row mainwrapper">
                 <div className="col col-lg-2 offset-lg-1 col-sm-2 col-2 left-col">
+                    <div className="position-fixed">
+                        <form method="GET" action="/items/sort">
+                            <div className="form-group">
+                                <select className="form-control" name="parameter" id="sort-parameter">
+                                    <option selected disabled>Sort by</option>
+                                    <option value="name">Item Name</option>
+                                    <option value="amount">Amount</option>
+                                    <option value="creditor">Creditor</option>
+                                    <option value="recurring">Recurring</option>
+                                    <option value="due_date">Due Date</option>
+                                    <option value="created_at">Date Created</option>
+                                    <option value="updated_at">Date Updated</option>
+                                </select>
+                                <select className="form-control" name="order" id="sort-order">
+                                    <option selected disabled>Order by</option>
+                                    <option value="DESC">Descending</option>
+                                    <option value="ASC">Ascending</option>
+                                </select>
+                                <button className="btn btn-primary" type="submit">Sort</button>
+                            </div>
+                        </form>
 
-                    <p className="position-fixed">LEFT COL</p>
+                        <p>left col</p>
+
+                    </div>
                 </div>
                 <div className="col col-lg-8 col-xs-10 right-col scrollit">
                     <div className="card my-1">

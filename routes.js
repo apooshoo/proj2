@@ -14,7 +14,7 @@ module.exports = (app, allModels) => {
   app.post('/items/new', itemCC.createItem);
   app.put('/items/:id', itemCC.editItem);
   app.delete('/items/:id', itemCC.deleteItem);
-
+  app.get('/items/sort', itemCC.sortAllItems);
 
   app.get('/test', accountCC.test);
 };

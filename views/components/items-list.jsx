@@ -1,9 +1,14 @@
 var React = require('react');
+
+            // .sort(function(a, b){
+        //     let variable = 'amount';
+        //     return a[variable] - b[variable];
+        //     // return b.amount - a.amount; //descending
+        // })
 class ItemsList extends React.Component {
     render() {
 
         let itemsList = this.props.itemsList.map(item =>{
-
             let created_at_date = item.created_at.toISOString().substring(0, 10);
             // console.log("created date", created_at_date)
 
@@ -17,6 +22,7 @@ class ItemsList extends React.Component {
                 recurringState = "Off";
             }
             let recurringDisplay = "Recurring: " + recurringState;
+
 
 
             return (
@@ -37,16 +43,13 @@ class ItemsList extends React.Component {
                             </div>
                             <div className="checkbox">
                               <label>
-                                <input type="checkbox" name="recurringbox" id="recurringCheckbox" data-toggle="toggle"/>
+                                <input type="checkbox" name="recurring" id="recurringCheckbox" data-toggle="toggle"/>
                                 {recurringDisplay}
                               </label>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="due_date-input">Due Date:</label>
                                 <input type="date" className="form-control" name="due_date" id="due_date-input" defaultValue={due_date_date}/>
-                            </div><div className="form-group">
-                                <label htmlFor="item-input">Amount:</label>
-                                <input type="text" className="form-control" name="item" id="item-input" defaultValue={item.amount}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="created_at-input">Date Created:</label>
@@ -65,7 +68,7 @@ class ItemsList extends React.Component {
                     </div>
                 </form>
             );
-        });
+        })
 
         return (
             <div className="d-flex flex-wrap show-all-wrapper">

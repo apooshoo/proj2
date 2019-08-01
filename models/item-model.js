@@ -111,12 +111,31 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let sortAll = (requestdata, callback) =>{
+        console.log("entering model sortAll");
+        console.log("req data in model sortAll: ", requestdata);
+        // let values = [requestdata.parameter, requestdata.order];
+        // console.log("VALUES: ", values)
+        let query = `SELECT * FROM items ORDER BY ${requestdata.parameter} ${requestdata.order}`;
+
+        dbPoolInstance.query(query, (err, result) =>{
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
 
 
     return {
         getAll,
         create,
         edit,
-        del
+        del,
+        sortAll
     };
 };

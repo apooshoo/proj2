@@ -59,6 +59,19 @@ module.exports = (db) => {
 
     };
 
+    let sortAllItemsCC = (req, res) =>{
+        console.log("entering sortAllItemsCC");
+        console.log("req query: ", req.query);
+        db.item.sortAll(req.query, (err, result) =>{
+            console.log("back in sortAllItemsCC");
+            console.log("Sorted: ", result);
+            let data = {
+                itemsData: result
+            };
+            res.render('home', data)
+        });
+    };
+
    /**
      * ===========================================
      * Export controller functions as a module
@@ -68,7 +81,8 @@ module.exports = (db) => {
         getAllItems: getAllItemsCC,
         createItem: createItemCC,
         editItem: editItemCC,
-        deleteItem: deleteItemCC
+        deleteItem: deleteItemCC,
+        sortAllItems: sortAllItemsCC
     };
 
 };
