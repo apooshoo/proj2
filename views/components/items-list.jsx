@@ -8,6 +8,7 @@ var React = require('react');
 class ItemsList extends React.Component {
     render() {
 
+      if(this.props.itemList){
         let itemsList = this.props.itemsList.map(item =>{
             let created_at_date = item.created_at.toISOString().substring(0, 10);
             // console.log("created date", created_at_date)
@@ -63,7 +64,7 @@ class ItemsList extends React.Component {
 
 
                                 <button className="btn btn-primary" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=PUT"}>Edit</button>
-                                <button className="btn btn-primary" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=DELETE"}>Delete</button>
+                                <button className="btn btn-danger" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=DELETE"}>Delete</button>
                         </div>
                     </div>
                 </form>
@@ -75,6 +76,13 @@ class ItemsList extends React.Component {
                 {itemsList}
             </div>
         );
+    } else {
+        return (
+            <p>Nothing to see here</p>
+            )
+    }
+
+
     }
 }
 

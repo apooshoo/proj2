@@ -1,3 +1,6 @@
+const sha256 = require('js-sha256');
+const SALT = "bonk";
+
 /**
  * ===========================================
  * Export model functions as a module
@@ -5,38 +8,43 @@
  */
 module.exports = (dbPoolInstance) => {
 
-    // `dbPoolInstance` is accessible within this function scope
+    let register = (requestdata, callback) => {
+        console.log("entering register model");
+        let password = sha256(requestdata.password);
+        let values = [requestdata.username, password];
+        console.log("VALUES: ", values)
+        let query = `INSERT INTO users (username, password) SELECT $1, $2 WHERE NOT EXISTS (SELECT * FROM users WHERE username = $1) RETURNING *`;
+        dbPoolInstance.query(query, values, (err, result) =>{
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
 
-    // let getAll = (callback) => {
-
-    //     let query = 'SELECT * FROM Tweet ORDER BY Tweet.date_created DESC';
-
-    //     dbPoolInstance.query(query, (error, queryResult) => {
-    //         if (error) {
-
-    //             // invoke callback function with results after query has executed
-    //             callback(error, null);
-
-    //         } else {
-
-    //             // invoke callback function with results after query has executed
-
-    //             if (queryResult.rows.length > 0) {
-    //                 callback(null, queryResult.rows);
-
-    //             } else {
-    //                 callback(null, null);
-
-    //             }
-    //         }
-    //     });
-    // };
-    let testModel = (callback) => {
-        console.log("entering testModel");
+    let login = (requestdata, callback) =>{
+        console.log("entering login model");
+        let password = sha256(requestdata.password);
+        let values = [requestdata.username, password];
+        console.log("VALUES: ", values);
+        let query = `SELECT * FROM users WHERE username = $1 AND password = $2`;
+        dbPoolInstance.query(query, values, (err, result) =>{
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
     };
 
 
     return {
-        testModel
+        register,
+        login
     };
 };

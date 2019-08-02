@@ -2,6 +2,11 @@ body{
 	max-width: 100%;
 	width: 100%;
 }
-.navbrandrow{
-	background-color: black;
+
+.start-card{
+	margin-top: 50px;
+}
+
+#navbar{
+	background-color: #222222;
 }

@@ -10,7 +10,6 @@ class Home extends React.Component {
   render() {
     let itemsList = this.props.itemsData;
     let currentDate = new Date().toISOString().substring(0, 10);
-    console.log("CURRENT DATE:", currentDate)
 
     // let default_due_date = item.due_date.toISOString().replace(/T[\S\s]+/,'');
     // console.log(due_date_date)
@@ -18,8 +17,10 @@ class Home extends React.Component {
     return (
         <Layout>
             <div className="row mainwrapper">
-                <div className="col col-lg-2 offset-lg-1 col-sm-2 col-2 left-col">
+                <div className="col col-lg-2 col-sm-2 col-2 left-col">
                     <div className="position-fixed">
+                      <div className="sidebar">
+                        <p>left col</p>
                         <form method="GET" action="/items/sort">
                             <div className="form-group">
                                 <select className="form-control" name="parameter" id="sort-parameter">
@@ -41,11 +42,14 @@ class Home extends React.Component {
                             </div>
                         </form>
 
-                        <p>left col</p>
-
+                        <form method="get" action="/items/search">
+                            <input className="form-control" name="search" placeholder="Search"/>
+                            <button className="btn btn-primary" type="submit">Search</button>
+                        </form>
+                      </div>
                     </div>
                 </div>
-                <div className="col col-lg-8 col-xs-10 right-col scrollit">
+                <div className="col col-lg-8 offset-lg-3 col-xs-10 right-col scrollit">
                     <div className="card my-1">
                         <div className="card-header text-white bg-primary">Create Item Card
                         </div>

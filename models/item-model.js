@@ -9,10 +9,12 @@
 module.exports = (dbPoolInstance) => {
 
     // };
-    let getAll = (callback) => {
+    let getAll = (requestdata, callback) => {
         console.log("entering model getAll")
-        let query = `SELECT * FROM items`;
-        dbPoolInstance.query(query, (err, result) => {
+        console.log("REQDATAAAAAAAAAAAAAAAAA", requestdata)
+        let values = [requestdata.cookies.userid];
+        let query = `SELECT * FROM items WHERE user_id = $1`;
+        dbPoolInstance.query(query, values, (err, result) => {
             if(err){
                 callback(err, null);
                 console.log(err.stack);
@@ -31,7 +33,7 @@ module.exports = (dbPoolInstance) => {
         if (requestdata.recurring === 'on'){
             recurringState = true;
         }
-        //provisional REMEMBER TO DELETE---------
+        //provisional -------------------------------------REMEMBER TO UPDATE--------------------------------------
         let user_id = 1;
         let values = [requestdata.name, requestdata.amount, recurringState, requestdata.due_date, requestdata.creditor, user_id];
         console.log("VALUES: ", values)
@@ -129,6 +131,23 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    // ~* does a case insensitive = search
+    let search = (requestdata, callback) =>{
+        console.log("entering model search");
+        console.log("req data in model search: ", requestdata);
+        let values = [requestdata.search];
+        let query = `SELECT * FROM items WHERE name ~* $1`;
+
+        dbPoolInstance.query(query, values, (err, result) =>{
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
 
 
     return {
@@ -136,6 +155,7 @@ module.exports = (dbPoolInstance) => {
         create,
         edit,
         del,
-        sortAll
+        sortAll,
+        search
     };
 };
