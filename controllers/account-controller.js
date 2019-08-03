@@ -58,7 +58,7 @@ module.exports = (db) => {
                     res.cookie('userid', result[0].id);
                     res.cookie('loggedIn', loggedInTrue);
                     res.cookie('username', result[0].username);
-
+                    console.log(req.cookies)
                     res.redirect('/items');
                 }else{
                     console.log('login failed!');
@@ -76,6 +76,18 @@ module.exports = (db) => {
         res.redirect('/');
     };
 
+    let getAllStatsCC = (req, res) =>{
+        console.log("entering getAllStatsCC");
+        console.log("req.param: ", req.params);
+
+
+        let data = {
+            cookies: req.cookies
+        };
+        res.render('user', data);
+        // res.redirect('/items');
+    };
+
 
 
     /**
@@ -87,7 +99,8 @@ module.exports = (db) => {
         start: startCC,
         register: registerCC,
         login: loginCC,
-        logout: logoutCC
+        logout: logoutCC,
+        getAllStats: getAllStatsCC,
     };
 
 };

@@ -23,9 +23,13 @@ module.exports = (db) => {
                         itemsData: result,
                         cookies: req.cookies
                     };
+                    console.log("DATA IN getAllItemsCC: ", data)
                     res.render('home', data);
                 } else {
-                    res.render('blank-home');
+                    let data = {
+                        cookies: req.cookies
+                    }
+                    res.render('blank-home', data);
                 }
             });
         } else {

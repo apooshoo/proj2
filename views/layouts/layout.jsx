@@ -2,6 +2,8 @@ var React = require('react');
 class Layout extends React.Component {
     render() {
         let currentDate = new Date().toISOString().substring(0, 10);
+        let cookies = this.props.cookies;
+        console.log(cookies.userid)
         return (
             <html>
             <head>
@@ -90,6 +92,7 @@ class Layout extends React.Component {
                     <img src="./dollar.png" width="40" height="40" className="d-inline-block align-top mr-3" alt=""/>Vaults
                 </a>
 
+                <a href={"/"+cookies.userid+"/stats"} className="btn btn-link">Account</a>
                 <a href="/logout" className="btn btn-link">Log out</a>
             </nav>
 

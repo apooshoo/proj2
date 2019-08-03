@@ -16,3 +16,12 @@ CREATE TABLE IF NOT EXISTS items (
 	creditor TEXT,
 	user_id INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS settings (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER,
+	pay_day TIMESTAMPTZ DEFAULT NULL,
+	next_pay_day TIMESTAMPTZ DEFAULT NULL,
+	pay_amount INTEGER,
+	save_amount INTEGER
+);

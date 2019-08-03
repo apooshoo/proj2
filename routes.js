@@ -3,6 +3,7 @@ module.exports = (app, allModels) => {
   // require the controller
   const itemCC = require('./controllers/item-controller')(allModels);
   const accountCC = require('./controllers/account-controller')(allModels);
+  const settingsCC = require('./controllers/settings-controller')(allModels);
     /**
    *  =========================================
    *    ALL ROUTES FOR CONTROLLER
@@ -22,4 +23,8 @@ module.exports = (app, allModels) => {
   app.get('/register', accountCC.register);
   app.get('/login', accountCC.login);
   app.get('/logout', accountCC.logout);
+  app.get('/:id/stats', accountCC.getAllStats);
+
+
+  app.get('/:id/settings', settingsCC.showSettings);
 };

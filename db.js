@@ -26,10 +26,12 @@ pool.on('error', function (err) {
  */
 const allItemsModelsFunction = require('./models/item-model');
 const allAccountModelsFunction = require('./models/account-model');
+const allSettingsModelsFunction = require('./models/settings-model');
 
 
 const itemsModelsObject = allItemsModelsFunction(pool);
 const accountModelsObject = allAccountModelsFunction(pool);
+const settingsModelsObject = allSettingsModelsFunction(pool);
 
 
 /**
@@ -52,4 +54,5 @@ module.exports = {
 
     item: itemsModelsObject,
     account: accountModelsObject,
+    settings: settingsModelsObject
 };

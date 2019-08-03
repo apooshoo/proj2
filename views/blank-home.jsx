@@ -7,14 +7,16 @@ var SALT = 'bonk';
 
 class BlankHome extends React.Component {
   render() {
+    console.log("rendering blank-home.jsx")
     let itemsList = this.props.itemsData;
+    let cookies = this.props.cookies;
     let currentDate = new Date().toISOString().substring(0, 10);
 
     // let default_due_date = item.due_date.toISOString().replace(/T[\S\s]+/,'');
     // console.log(due_date_date)
 
     return (
-        <Layout>
+        <Layout cookies={cookies}>
             <div className="row mainwrapper">
                 <div className="col col-lg-8 offset-lg-3 col-xs-10 right-col scrollit">
                     <div className="card my-1">

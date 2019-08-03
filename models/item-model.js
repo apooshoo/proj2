@@ -11,10 +11,9 @@ module.exports = (dbPoolInstance) => {
     // };
     let getAll = (requestdata, callback) => {
         console.log("entering model getAll")
-        console.log("REQDATAAAAAAAAAAAAAAAAA", requestdata)
+        // console.log("REQDATA", requestdata)
         let user_id = parseInt(requestdata.cookies.userid);
         let values = [user_id];
-        console.log('values in getall: ', values);
         let query = `SELECT * FROM items WHERE user_id = $1`;
         dbPoolInstance.query(query, values, (err, result) => {
             if(err){
