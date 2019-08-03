@@ -18,10 +18,15 @@ module.exports = (db) => {
             }
             db.item.getAll(requestdata, (err, result) => {
                 console.log("back in getAllItemsCC");
-                let data = {
-                    itemsData: result
-                };
-                res.render('home', data);
+                if (result){
+                        let data = {
+                        itemsData: result
+                    };
+                    res.render('home', data);
+                } else {
+                    res.render('blank-home');
+                }
+
             });
         } else {
             res.render('start');
@@ -31,8 +36,12 @@ module.exports = (db) => {
 
     let createItemCC = (req, res) => {
         console.log("entering createItemCC");
-        console.log("req.body: ", req.body);
-        db.item.create(req.body, (err, result) => {
+        let requestdata = {
+            cookies: req.cookies,
+            body: req.body
+        };
+        console.log("requestdata: ", requestdata);
+        db.item.create(requestdata, (err, result) => {
             console.log("back in createItemCC");
             console.log(result)
             res.redirect('/items');
@@ -68,8 +77,12 @@ module.exports = (db) => {
 
     let sortAllItemsCC = (req, res) =>{
         console.log("entering sortAllItemsCC");
-        console.log("req query: ", req.query);
-        db.item.sortAll(req.query, (err, result) =>{
+        let requestdata = {
+            cookies: req.cookies,
+            query: req.query
+        };
+        console.log("requestdata: ", requestdata);
+        db.item.sortAll(requestdata, (err, result) =>{
             console.log("back in sortAllItemsCC");
             console.log("Sorted: ", result);
             let data = {

@@ -12,7 +12,9 @@ module.exports = (dbPoolInstance) => {
     let getAll = (requestdata, callback) => {
         console.log("entering model getAll")
         console.log("REQDATAAAAAAAAAAAAAAAAA", requestdata)
-        let values = [requestdata.cookies.userid];
+        let user_id = parseInt(requestdata.cookies.userid);
+        let values = [user_id];
+        console.log('values in getall: ', values);
         let query = `SELECT * FROM items WHERE user_id = $1`;
         dbPoolInstance.query(query, values, (err, result) => {
             if(err){
@@ -30,12 +32,11 @@ module.exports = (dbPoolInstance) => {
         console.log("entering model create");
         console.log("request data in model: ", requestdata);
         let recurringState = false;
-        if (requestdata.recurring === 'on'){
+        if (requestdata.body.recurring === 'on'){
             recurringState = true;
         }
-        //provisional -------------------------------------REMEMBER TO UPDATE--------------------------------------
-        let user_id = 1;
-        let values = [requestdata.name, requestdata.amount, recurringState, requestdata.due_date, requestdata.creditor, user_id];
+        let user_id = parseInt(requestdata.cookies.userid);
+        let values = [requestdata.body.name, requestdata.body.amount, recurringState, requestdata.body.due_date, requestdata.body.creditor, user_id];
         console.log("VALUES: ", values)
         let query = `INSERT INTO items (name, amount, recurring, due_date, creditor, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
         dbPoolInstance.query(query, values, (err, result) => {
@@ -116,9 +117,8 @@ module.exports = (dbPoolInstance) => {
     let sortAll = (requestdata, callback) =>{
         console.log("entering model sortAll");
         console.log("req data in model sortAll: ", requestdata);
-        // let values = [requestdata.parameter, requestdata.order];
-        // console.log("VALUES: ", values)
-        let query = `SELECT * FROM items ORDER BY ${requestdata.parameter} ${requestdata.order}`;
+        let user_id = parseInt(requestdata.cookies.userid);
+        let query = `SELECT * FROM items WHERE user_id = ${user_id} ORDER BY ${requestdata.query.parameter} ${requestdata.query.order}`;
 
         dbPoolInstance.query(query, (err, result) =>{
             if(err){

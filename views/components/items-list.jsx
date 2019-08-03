@@ -7,8 +7,6 @@ var React = require('react');
         // })
 class ItemsList extends React.Component {
     render() {
-
-      if(this.props.itemList){
         let itemsList = this.props.itemsList.map(item =>{
             let created_at_date = item.created_at.toISOString().substring(0, 10);
             // console.log("created date", created_at_date)
@@ -27,7 +25,7 @@ class ItemsList extends React.Component {
 
 
             return (
-                <form className="col-lg-6 col-12 ">
+                <form className="col-lg-6 col-sm-12 col-12">
                     <div className="card my-2">
                         <div className="card-header form-group bg-success">
                             <label className="control-label" htmlFor="name-input">Item:</label>
@@ -76,11 +74,7 @@ class ItemsList extends React.Component {
                 {itemsList}
             </div>
         );
-    } else {
-        return (
-            <p>Nothing to see here</p>
-            )
-    }
+
 
 
     }

@@ -16,26 +16,48 @@ class Layout extends React.Component {
             <body>
             <nav className="navbar navbar-expand-lg sticky-top d-print" id="navbar">
 
-                <div className="dropdown col-4">
-                    <button className="btn btn-primary dropdown-toggle float-left" type="button" id="dropdownAccButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</button>
+                <div className="dropdown col-2">
+                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
                     <div className="dropdown-menu" aria-label="dropdown-menu">
-                        <form className="px-4 py-3">
+                        <form method="GET" action="/items/sort">
                             <div className="form-group">
-                                <input type="text" className="form-control" name="username" placeholder="Username"/></div>
-                            <div className="form-group">
-                                <input type="password" className="form-control" name="password" placeholder="Password"/></div>
-                            <button type="submit" className="btn btn-success w-50" method="POST" formAction="/register">Register</button>
-                            <button type="submit" className="btn btn-primary w-50" method="GET" formAction="/login">Login</button>
+                                <select className="form-control" name="parameter" id="sort-parameter">
+                                    <option selected disabled>Sort by</option>
+                                    <option value="name">Item Name</option>
+                                    <option value="amount">Amount</option>
+                                    <option value="creditor">Creditor</option>
+                                    <option value="recurring">Recurring</option>
+                                    <option value="due_date">Due Date</option>
+                                    <option value="created_at">Date Created</option>
+                                    <option value="updated_at">Date Updated</option>
+                                </select>
+                                <select className="form-control" name="order" id="sort-order">
+                                    <option selected disabled>Order by</option>
+                                    <option value="DESC">Descending</option>
+                                    <option value="ASC">Ascending</option>
+                                </select>
+                                <button className="btn btn-primary" type="submit">Sort</button>
+                            </div>
                         </form>
-                        <div className="dropdown-divider"/>
-                        <div className="px-4 py-3">
-                            <a href="/logout" className="btn btn-link">Log out</a></div>
+                    </div>
+
+                </div>
+
+
+                <div className="dropdown col-2">
+                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
+                     <div className="dropdown-menu" aria-label="dropdown-menu">
+                        <form method="get" action="/items/search">
+                            <input className="form-control" type="search" name="search" placeholder="Search"/>
+                            <button className="btn btn-primary" type="submit">Search</button>
+                        </form>
                     </div>
                 </div>
 
+
                 <a className="navbar-brand col offset-1" href="/items/">
-                    <img src="./dollar.png" width="40" height="40"
-                         className="d-inline-block align-top mr-3" alt=""/>Vaults</a>
+                    <img src="./dollar.png" width="40" height="40" className="d-inline-block align-top mr-3" alt=""/>Vaults</a>
+                <a href="/logout" className="btn btn-link">Log out</a>
             </nav>
 
 

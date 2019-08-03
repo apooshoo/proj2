@@ -1,12 +1,11 @@
 var React = require("react");
 var Layout = require("./layouts/layout");
-var ItemsList = require("./components/items-list");
 
 var sha256 = require('js-sha256');
 var SALT = 'bonk';
 
 
-class Home extends React.Component {
+class BlankHome extends React.Component {
   render() {
     let itemsList = this.props.itemsData;
     let currentDate = new Date().toISOString().substring(0, 10);
@@ -17,7 +16,7 @@ class Home extends React.Component {
     return (
         <Layout>
             <div className="row mainwrapper">
-                <div className="col col-lg-10 offset-lg-1 col-sm-12 col-12">
+                <div className="col col-lg-8 offset-lg-3 col-xs-10 right-col scrollit">
                     <div className="card my-1">
                         <div className="card-header text-white bg-primary">Create Item Card
                         </div>
@@ -36,9 +35,7 @@ class Home extends React.Component {
                                 <button className="btn btn-primary" type="submit">Create</button>
                             </form>
                         </div>
-                    </div>
-                    <div className="col-12 items-list-wrapper">
-                    <ItemsList itemsList={itemsList}></ItemsList>
+                        <p>This acc has no items at all!</p>
                     </div>
                 </div>
             </div>
@@ -50,5 +47,4 @@ class Home extends React.Component {
   }
 }
 
-module.exports = Home;
-// <QuotesList quotesList={quotesList}></QuotesList>
+module.exports = BlankHome;
