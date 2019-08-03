@@ -29,9 +29,11 @@ class ItemsList extends React.Component {
             return (
                 <form className="col-lg-6 col-sm-12 col-12">
                     <div className="card my-2">
-                        <a href={"/items/single/"+item.id}><div className="card-header form-group bg-success">
-                            <label className="control-label" htmlFor="name-input">Item:</label>
-                            <input type="text" className="form-control" name="name" id="name-input" defaultValue={item.name}/></div>
+                        <a href={"/items/single/"+item.id}>
+                            <div className="card-header form-group bg-success">
+                                <label className="control-label" htmlFor="name-input">Item:</label>
+                                <input type="text" className="form-control" name="name" id="name-input" defaultValue={item.name}/>
+                            </div>
                         </a>
                         <div className="card-body">
                             <div className="form-group">

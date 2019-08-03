@@ -9,7 +9,6 @@ module.exports = (db) => {
     //  * Controller logic
     //  * ===========================================
 
-    //get stats included in this
     let getAllItemsCC = (req, res) => {
         if(req.cookies.loggedIn === loggedInTrue){
             console.log("starting getAllItemsCC");

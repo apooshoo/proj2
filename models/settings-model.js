@@ -1,5 +1,8 @@
 module.exports = (dbPoolInstance) => {
 
+// select pay_day::date from settings where id= 1;
+
+
     let show = (requestdata, callback) => {
         console.log("entering model show");
         console.log("requestdata", requestdata);
@@ -10,7 +13,7 @@ module.exports = (dbPoolInstance) => {
             if(err){
                 callback(err, null);
             } else if (result.rows.length > 0){
-                callback(null, result.rows);
+                callback(null, result);
             } else {
                 callback(null, null);
             };

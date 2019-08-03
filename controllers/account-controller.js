@@ -58,7 +58,6 @@ module.exports = (db) => {
                     res.cookie('userid', result[0].id);
                     res.cookie('loggedIn', loggedInTrue);
                     res.cookie('username', result[0].username);
-                    console.log(req.cookies)
                     res.redirect('/items');
                 }else{
                     console.log('login failed!');
