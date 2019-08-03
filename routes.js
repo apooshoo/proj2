@@ -14,6 +14,7 @@ module.exports = (app, allModels) => {
   app.delete('/items/:id', itemCC.deleteItem);
   app.get('/items/sort', itemCC.sortAllItems); //add id
   app.get('/items/search', itemCC.searchItems) //add id
+  app.get('/items/single/:id', itemCC.getItem);
 
 
   app.get('/', accountCC.start);

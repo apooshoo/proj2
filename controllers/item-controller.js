@@ -9,7 +9,7 @@ module.exports = (db) => {
     //  * Controller logic
     //  * ===========================================
 
-
+    //get stats included in this
     let getAllItemsCC = (req, res) => {
         if(req.cookies.loggedIn === loggedInTrue){
             console.log("starting getAllItemsCC");
@@ -20,13 +20,13 @@ module.exports = (db) => {
                 console.log("back in getAllItemsCC");
                 if (result){
                         let data = {
-                        itemsData: result
+                        itemsData: result,
+                        cookies: req.cookies
                     };
                     res.render('home', data);
                 } else {
                     res.render('blank-home');
                 }
-
             });
         } else {
             res.render('start');
@@ -98,10 +98,26 @@ module.exports = (db) => {
         db.item.search(req.query, (err, result) =>{
             console.log("back in searchItemCC");
             console.log("Search Result(s): ", result);
-            res.redirect('/items')
+            let data = {
+                itemsData: result
+            };
+            res.render('single-item', data);
         });
-
     };
+
+    let getItemCC = (req, res) => {
+        console.log("entering getItemCC");
+        console.log("req. params: ", req.params);
+        db.item.getItem(req.params, (err, result) => {
+            console.log("back in getItemCC");
+            console.log("getItem result: ", result);
+            let data = {
+                cookies: req.cookies,
+                itemsData: result
+            };
+            res.render('single-item', data);
+        });
+    }
 
    /**
      * ===========================================
@@ -114,7 +130,8 @@ module.exports = (db) => {
         editItem: editItemCC,
         deleteItem: deleteItemCC,
         sortAllItems: sortAllItemsCC,
-        searchItems: searchItemCC
+        searchItems: searchItemCC,
+        getItem: getItemCC
     };
 
 };

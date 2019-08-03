@@ -17,17 +17,13 @@ class Home extends React.Component {
     return (
         <Layout>
             <div className="row mainwrapper">
-                <div className="col col-lg-10 offset-lg-1 col-sm-12 col-12">
-                    <div className="col-12 user-wrapper">
-                    </div>
-
+                <div className="col col-lg-10 offset-lg-3 col-12">
                     <div className="col-12 items-list-wrapper">
                     <ItemsList itemsList={itemsList}></ItemsList>
                     </div>
                 </div>
             </div>
         </Layout>
-
 
     );
   }

@@ -149,6 +149,28 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let getItem = (requestdata, callback) => {
+        console.log("entering model getItem");
+        console.log("requestdata in getItem", requestdata);
+        let values = [parseInt(requestdata.id)];
+        let query = `SELECT * FROM items WHERE id = $1`;
+        dbPoolInstance.query(query, values, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
+    // let getStats = (requestdata, callback) =>{
+    //     console.log("entering model getStats");
+    //     console.log("requestdata: ", requestdata);
+
+    // };
+
 
     return {
         getAll,
@@ -156,6 +178,8 @@ module.exports = (dbPoolInstance) => {
         edit,
         del,
         sortAll,
-        search
+        search,
+        getItem
+        // getStats
     };
 };

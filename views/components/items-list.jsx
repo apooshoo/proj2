@@ -7,7 +7,9 @@ var React = require('react');
         // })
 class ItemsList extends React.Component {
     render() {
+        let counter = 0;
         let itemsList = this.props.itemsList.map(item =>{
+            counter += 1;
             let created_at_date = item.created_at.toISOString().substring(0, 10);
             // console.log("created date", created_at_date)
 
@@ -27,10 +29,10 @@ class ItemsList extends React.Component {
             return (
                 <form className="col-lg-6 col-sm-12 col-12">
                     <div className="card my-2">
-                        <div className="card-header form-group bg-success">
+                        <a href={"/items/single/"+item.id}><div className="card-header form-group bg-success">
                             <label className="control-label" htmlFor="name-input">Item:</label>
-                            <input type="text" className="form-control" name="name" id="name-input" defaultValue={item.name}/>
-                        </div>
+                            <input type="text" className="form-control" name="name" id="name-input" defaultValue={item.name}/></div>
+                        </a>
                         <div className="card-body">
                             <div className="form-group">
                                 <label htmlFor="item-input">Amount:</label>
@@ -42,7 +44,7 @@ class ItemsList extends React.Component {
                             </div>
                             <div className="checkbox">
                               <label>
-                                <input type="checkbox" name="recurring" id="recurringCheckbox" data-toggle="toggle"/>
+                                <input type="checkbox" name="recurring" className="recurringCheckbox" id={"recurringCheckbox"+counter} data-toggle="toggle"/>
                                 {recurringDisplay}
                               </label>
                             </div>

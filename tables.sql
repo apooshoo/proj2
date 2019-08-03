@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
 	username TEXT,
-	password TEXT
+	password TEXT,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS items (
