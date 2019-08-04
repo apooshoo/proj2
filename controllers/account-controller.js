@@ -82,6 +82,7 @@ module.exports = (db) => {
         db.settings.show(req.params, (err, result) => {
             console.log("back in getAllStatsCC");
             console.log("Stats: ", result);
+
             let data = {
                 stats: result[0],
                 cookies: req.cookies

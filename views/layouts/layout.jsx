@@ -3,7 +3,6 @@ class Layout extends React.Component {
     render() {
         let currentDate = new Date().toISOString().substring(0, 10);
         let cookies = this.props.cookies;
-        console.log(cookies.userid)
         return (
             <html>
             <head>
@@ -15,10 +14,8 @@ class Layout extends React.Component {
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"/>
                 <link rel="stylesheet" type="text/css" href="./style.css"/>
             </head>
-
             <body>
             <nav className="navbar navbar-expand-lg sticky-top d-print" id="navbar">
-
                 <div className="dropdown col-2">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
                     <div className="dropdown-menu px-0 py-0" aria-label="dropdown-menu">
@@ -48,7 +45,6 @@ class Layout extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="dropdown col-2">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
                      <div className="dropdown-menu px-0 py-0" aria-label="dropdown-menu">
@@ -62,7 +58,6 @@ class Layout extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 <div className="dropdown col-3">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</button>
                     <div className="dropdown-menu py-0 my-0" aria-label="dropdown-menu">
@@ -86,24 +81,16 @@ class Layout extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
                 <a className="navbar-brand col" href="/items/">
                     <img src="./dollar.png" width="40" height="40" className="d-inline-block align-top mr-3" alt=""/>Vaults
                 </a>
-
                 <a href={"/"+cookies.userid+"/stats"} className="btn btn-link">Account</a>
                 <a href="/logout" className="btn btn-link">Log out</a>
             </nav>
-
-
-
             <div className="container-fluid my-5">
                 {this.props.children}
             </div>
-
-
-            <script src="./script.js"/>
+            <script src="./script.js"></script>
             </body>
             </html>
         );

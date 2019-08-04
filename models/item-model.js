@@ -164,6 +164,9 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let test = (callback) => {
+        console.log('test')
+    }
     // let getStats = (requestdata, callback) =>{
     //     console.log("entering model getStats");
     //     console.log("requestdata: ", requestdata);
@@ -178,7 +181,7 @@ module.exports = (dbPoolInstance) => {
         del,
         sortAll,
         search,
-        getItem
-        // getStats
+        getItem,
+        test
     };
 };
