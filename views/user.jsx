@@ -1,6 +1,6 @@
 var React = require("react");
 var Layout = require("./layouts/layout");
-var ItemsList = require("./components/items-list");
+var CreditorsList = require("./components/creditors-list");
 
 var sha256 = require('js-sha256');
 var SALT = 'bonk';
@@ -20,6 +20,8 @@ class User extends React.Component {
     };
     let daysToPayday = daysBetween(stats.next_pay_day, currentTz);
 
+    let creditorsList = this.props.creditors;
+
     return (
         <Layout cookies={cookies}>
             <div className="row mainwrapper">
@@ -31,7 +33,12 @@ class User extends React.Component {
 
                         <p>PIE CHART HERE</p>
                         <a href={"/"+cookies.userid+"/settings"}>Settings</a>
+
                     </div>
+                    <div className="col col-10 offset-1 collapsibles-list">
+                    <CreditorsList creditorsList={creditorsList}></CreditorsList>
+                    </div>
+
 
 
 

@@ -164,14 +164,20 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
-    let test = (callback) => {
-        console.log('test')
-    }
-    // let getStats = (requestdata, callback) =>{
-    //     console.log("entering model getStats");
-    //     console.log("requestdata: ", requestdata);
-
-    // };
+    let getCreditors = (requestdata, callback) =>{
+        console.log("entering model getStats");
+        let user_id = parseInt(requestdata.id);
+        let query = `SELECT creditor, SUM(amount) AS amount FROM items WHERE user_id = ${user_id} GROUP BY creditor ORDER BY amount DESC`;
+        dbPoolInstance.query(query, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
 
 
     return {
@@ -182,6 +188,6 @@ module.exports = (dbPoolInstance) => {
         sortAll,
         search,
         getItem,
-        test
+        getCreditors
     };
 };

@@ -79,15 +79,20 @@ module.exports = (db) => {
     let getAllStatsCC = (req, res) =>{
         console.log("entering getAllStatsCC");
         console.log("req.param: ", req.params);
-        db.settings.show(req.params, (err, result) => {
+        db.settings.show(req.params, (err, stats) => {
             console.log("back in getAllStatsCC");
-            console.log("Stats: ", result);
+            console.log("Stats: ", stats);
+            db.item.getCreditors(req.params, (err, creditors) => {
+                console.log("items grouped by creditors: ", creditors);
+                let data = {
+                    stats: stats[0],
+                    creditors: creditors,
+                    cookies: req.cookies
+                };
+                res.render('user', data);
+            });
 
-            let data = {
-                stats: result[0],
-                cookies: req.cookies
-            };
-            res.render('user', data);
+
         });
 
 
