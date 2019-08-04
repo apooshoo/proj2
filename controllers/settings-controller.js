@@ -10,7 +10,7 @@ module.exports = (db) => {
         db.settings.show(req.params, (err, result) => {
             console.log("back in showSettingsCC");
             if(result){
-                let x = result.rows[0];
+                let x = result[0];
                 let data = {
                     user_id: x.user_id,
                     pay_day: x.pay_day.toISOString().substring(0, 10),
@@ -22,6 +22,7 @@ module.exports = (db) => {
                 console.log("DATA: ", data);
                 res.render('settings', data);
             } else {
+                //this really shouldnt happen if you prompt them early
                 console.log('no settings yet!')
                 let data = {
                     cookies: req.cookies
@@ -31,8 +32,27 @@ module.exports = (db) => {
         });
     };
 
+    let editCC = (req, res) => {
+        console.log("entering editCC");
+        console.log("req.params: ", req.params);
+        console.log("req.body: ", req.body);
+        let requestdata = {
+            params: req.params,
+            body:req.body
+        };
+        db.settings.edit(requestdata, (err, result) => {
+            console.log("back in editCC");
+            if(result){
+                console.log("edited result: ", result);
+                res.redirect(`/${req.params.id}/settings`);
+            }
+
+        });
+    };
+
     return {
-        showSettings: showSettingsCC
+        showSettings: showSettingsCC,
+        edit: editCC
     };
 
 };

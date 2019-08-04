@@ -75,15 +75,21 @@ module.exports = (db) => {
         res.redirect('/');
     };
 
+    //THIS USES SETTINGS SHOW MODELS
     let getAllStatsCC = (req, res) =>{
         console.log("entering getAllStatsCC");
         console.log("req.param: ", req.params);
+        db.settings.show(req.params, (err, result) => {
+            console.log("back in getAllStatsCC");
+            console.log("Stats: ", result);
+            let data = {
+                stats: result[0],
+                cookies: req.cookies
+            };
+            res.render('user', data);
+        });
 
 
-        let data = {
-            cookies: req.cookies
-        };
-        res.render('user', data);
         // res.redirect('/items');
     };
 

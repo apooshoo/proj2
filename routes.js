@@ -27,4 +27,5 @@ module.exports = (app, allModels) => {
 
 
   app.get('/:id/settings', settingsCC.showSettings);
+  app.put('/:id/settings/edit', settingsCC.edit);
 };
