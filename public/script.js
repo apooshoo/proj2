@@ -1,6 +1,5 @@
 console.log('test!')
 
-
 window.onload = () => {
     autoCheckRecurringItems();
 };

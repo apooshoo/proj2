@@ -155,6 +155,20 @@ module.exports = (db) => {
         });
     };
 
+    let getSelItemCC = (req, res) => {
+        console.log("entering getSelItemCC");
+        console.log(req.query);
+        db.item.getItem(req.query, (err, result) => {
+            console.log("back in getItemCC");
+            console.log("getItem result: ", result);
+            let data = {
+                cookies: req.cookies,
+                itemsData: result
+            };
+            res.render('single-item', data);
+        });
+    };
+
    /**
      * ===========================================
      * Export controller functions as a module
@@ -169,7 +183,8 @@ module.exports = (db) => {
         searchItems: searchItemCC,
         getItem: getItemCC,
         payItem: payItemCC,
-        getHistory: getHistoryCC
+        getHistory: getHistoryCC,
+        getSelItem: getSelItemCC
     };
 
 };

@@ -18,7 +18,7 @@ class BlankHome extends React.Component {
     return (
         <Layout cookies={cookies}>
             <div className="row mainwrapper">
-                <div className="col col-lg-8 offset-lg-3 col-xs-10 right-col scrollit">
+                <div className="col col-lg-8 offset-lg-2 col-12">
                     <div className="card my-1">
                         <div className="card-header text-white bg-primary">Create Item Card
                         </div>

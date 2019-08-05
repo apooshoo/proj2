@@ -15,6 +15,7 @@ module.exports = (app, allModels) => {
   app.delete('/items/:id', itemCC.deleteItem);
   app.get('/items/sort', itemCC.sortAllItems); //add id
   app.get('/items/search', itemCC.searchItems) //add id
+  app.get('/items/single/', itemCC.getSelItem);
   app.get('/items/single/:id', itemCC.getItem);
   app.put('/items/pay/:id', itemCC.payItem);
   app.get('/items/history/:id', itemCC.getHistory);

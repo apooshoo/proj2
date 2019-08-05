@@ -1,6 +1,7 @@
 var React = require("react");
 var Layout = require("./layouts/layout");
 var ItemsList = require("./components/items-list");
+var ItemsSelect = require("./components/items-select");
 
 var sha256 = require('js-sha256');
 var SALT = 'bonk';
@@ -24,6 +25,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="col-12 items-list-wrapper">
+                    <ItemsSelect itemsList={itemsList}></ItemsSelect>
                     <ItemsList itemsList={itemsList}></ItemsList>
                     </div>
                 </div>
