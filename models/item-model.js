@@ -14,7 +14,7 @@ module.exports = (dbPoolInstance) => {
         // console.log("REQDATA", requestdata)
         let user_id = parseInt(requestdata.cookies.userid);
         let values = [user_id];
-        let query = `SELECT * FROM items WHERE user_id = $1`;
+        let query = `SELECT * FROM items WHERE user_id = $1 AND paid = false`;
         dbPoolInstance.query(query, values, (err, result) => {
             if(err){
                 callback(err, null);
@@ -130,12 +130,13 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
-    // ~* does a case insensitive = search
+    // ~* does a case insensitive = sear_ch;
     let search = (requestdata, callback) =>{
         console.log("entering model search");
         console.log("req data in model search: ", requestdata);
-        let values = [requestdata.search];
-        let query = `SELECT * FROM items WHERE name ~* $1`;
+        let user_id = requestdata.user_id;
+        let values = [requestdata.query.search, user_id];
+        let query = `SELECT * FROM items WHERE name ~* $1 AND user_id = $2`;
 
         dbPoolInstance.query(query, values, (err, result) =>{
             if(err){
@@ -179,6 +180,36 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let getTotalSpend = (requestdata, callback) => {
+        console.log("entering model getTotalSpend");
+        let user_id = parseInt(requestdata.id);
+        let query = `SELECT SUM(amount) AS amount FROM items WHERE user_id = ${user_id}`;
+        dbPoolInstance.query(query, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
+    let pay = (requestdata, callback) => {
+        console.log("entering model pay");
+        let user_id = parseInt(requestdata.id);
+        let query = `UPDATE items SET paid = true WHERE user_id = ${user_id} RETURNING *`;
+        dbPoolInstance.query(query, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
 
     return {
         getAll,
@@ -188,6 +219,8 @@ module.exports = (dbPoolInstance) => {
         sortAll,
         search,
         getItem,
-        getCreditors
+        getCreditors,
+        getTotalSpend,
+        pay
     };
 };

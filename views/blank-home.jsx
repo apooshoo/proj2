@@ -25,7 +25,7 @@ class BlankHome extends React.Component {
                         <div className="card-body bg-light px-4 py-4">
                             <form method="POST" action="/items/new">
                                 <input type="text" className="card-input form-control w-50" name="name" placeholder="Input name of item"/>
-                                <input type="text" className="card-input form-control w-50" name="amount" placeholder="Input amount"/>
+                                <input type="text" className="card-input form-control w-50" name="amount" placeholder="Input amount in dollars, eg. 1.23"/>
                                 <input type="text" className="card-input form-control w-50" name="creditor" placeholder="Input name of creditor"/>
                                 <div className="checkbox">
                                   <label>
@@ -33,6 +33,7 @@ class BlankHome extends React.Component {
                                     Check this box for monthly payments
                                   </label>
                                 </div>
+                                <label className="font-weight-light ml-2" htmlFor="due_date-input">Due Date:</label>
                                 <input type="date" className="card-input form-control w-50" name="due_date" defaultValue={currentDate}/>
                                 <button className="btn btn-primary" type="submit">Create</button>
                             </form>

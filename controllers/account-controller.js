@@ -80,19 +80,33 @@ module.exports = (db) => {
         console.log("entering getAllStatsCC");
         console.log("req.param: ", req.params);
         db.settings.show(req.params, (err, stats) => {
-            console.log("back in getAllStatsCC");
-            console.log("Stats: ", stats);
-            db.item.getCreditors(req.params, (err, creditors) => {
-                console.log("items grouped by creditors: ", creditors);
+            // console.log("Stats: ", stats);
+            if(stats){
+                db.item.getCreditors(req.params, (err, creditors) => {
+                    console.log("items grouped by creditors: ", creditors);
+                    if(creditors){
+                        db.item.getTotalSpend(req.params, (err, totalSpend) => {
+                            console.log("total spend: ", totalSpend);
+                            let data = {
+                                stats: stats[0],
+                                creditors: creditors,
+                                totalSpend: totalSpend[0],
+                                cookies: req.cookies
+                            };
+                            res.render('user', data);
+                        });
+                    } else {
+                        console.log("no items yet!");
+                        res.redirect('/items');
+                    };
+                });
+            } else {
+                console.log("no settings yet!");
                 let data = {
-                    stats: stats[0],
-                    creditors: creditors,
                     cookies: req.cookies
                 };
-                res.render('user', data);
-            });
-
-
+                res.render('blank-settings', data);
+            };
         });
 
 

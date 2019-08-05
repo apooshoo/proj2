@@ -12,18 +12,19 @@ class CreditorsList extends React.Component {
 
         return (
 
-            <div class="panel-group">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
+            <div className="panel-group">
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                  <h4 className="panel-title">
                     <a data-toggle="collapse" href="#collapse1">Total amount owed to each creditor</a>
                   </h4>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse">
-                  <ul class="list-group text-center w-75">
+
+
+                <div id="collapse1" className="panel-collapse collapse">
+                  <ul className="list-group text-center w-75">
                     {creditorsList}
                   </ul>
-                  <div class="panel-footer">Footer</div>
                 </div>
               </div>
             </div>

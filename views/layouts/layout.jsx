@@ -8,6 +8,9 @@ class Layout extends React.Component {
             <head>
                 <title>Vaults</title>
                 <meta charSet="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"/>
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"  crossOrigin="anonymous"/>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossOrigin="anonymous"/>
@@ -15,9 +18,9 @@ class Layout extends React.Component {
                 <link rel="stylesheet" type="text/css" href="./style.css"/>
             </head>
             <body>
-            <nav className="navbar navbar-expand-lg sticky-top d-print" id="navbar">
+            <nav className="navbar navbar-expand-lg sticky-top d-print navbar-dark bg-dark" id="navbar">
                 <div className="dropdown col-2">
-                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+                    <button className="btn btn-link dropdown-toggle text-white" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
                     <div className="dropdown-menu px-0 py-0" aria-label="dropdown-menu">
                         <div className="card">
                             <div className="card-body bg-light px-3">
@@ -46,7 +49,7 @@ class Layout extends React.Component {
                     </div>
                 </div>
                 <div className="dropdown col-2">
-                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
+                    <button className="btn btn-link dropdown-toggle text-white" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
                      <div className="dropdown-menu px-0 py-0" aria-label="dropdown-menu">
                         <div className="card">
                             <div className="card-body bg-light px-3">
@@ -59,13 +62,13 @@ class Layout extends React.Component {
                     </div>
                 </div>
                 <div className="dropdown col-3">
-                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</button>
+                    <button className="btn btn-link dropdown-toggle text-white" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</button>
                     <div className="dropdown-menu py-0 my-0" aria-label="dropdown-menu">
                         <div className="card">
                             <div className="card-body bg-light px-3">
                                 <form method="POST" action="/items/new">
                                     <input type="text" className="card-input form-control" name="name" placeholder="Input name of item"/>
-                                    <input type="text" className="card-input form-control" name="amount" placeholder="Input amount"/>
+                                    <input type="text" className="card-input form-control" name="amount" placeholder="Input amount in dollars, eg. 1.23"/>
                                     <input type="text" className="card-input form-control" name="creditor" placeholder="Input name of creditor"/>
                                     <div className="checkbox">
                                       <label>
@@ -82,10 +85,9 @@ class Layout extends React.Component {
                     </div>
                 </div>
                 <a className="navbar-brand col" href="/items/">
-                    <img src="./dollar.png" width="40" height="40" className="d-inline-block align-top mr-3" alt=""/>Vaults
-                </a>
-                <a href={"/"+cookies.userid+"/stats"} className="btn btn-link">Account</a>
-                <a href="/logout" className="btn btn-link">Log out</a>
+                    <img src="./dollar.png" width="40" height="40" className="align-top mr-3" alt=""/>Vaults</a>
+                <a href={"/"+cookies.userid+"/stats"} className="btn btn-link text-white" id="acc-btn">Account</a>
+                <a href="/logout" className="btn btn-link text-white">Log out</a>
             </nav>
             <div className="container-fluid my-5">
                 {this.props.children}

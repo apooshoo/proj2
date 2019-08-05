@@ -5,6 +5,7 @@ var React = require('react');
         //     return a[variable] - b[variable];
         //     // return b.amount - a.amount; //descending
         // })
+let counter = 0;
 class ItemsList extends React.Component {
     render() {
         let counter = 0;
@@ -46,7 +47,7 @@ class ItemsList extends React.Component {
                             </div>
                             <div className="checkbox">
                               <label>
-                                <input type="checkbox" name="recurring" className="recurringCheckbox" id={"recurringCheckbox"+counter} data-toggle="toggle"/>
+                                <input type="checkbox" name="recurring" className={"recurring "+recurringState} id={"recurringCheckbox"+counter} data-toggle="toggle"/>
                                 {recurringDisplay}
                               </label>
                             </div>
@@ -67,11 +68,13 @@ class ItemsList extends React.Component {
 
                                 <button className="btn btn-primary" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=PUT"}>Edit</button>
                                 <button className="btn btn-danger" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=DELETE"}>Delete</button>
+                                <button className="btn btn-primary" type="submit" formMethod="POST" formAction={"/items/pay/"+item.id+"?_method=PUT"}>Pay</button>
+
                         </div>
                     </div>
                 </form>
             );
-        })
+        });
 
         return (
             <div className="d-flex flex-wrap show-all-wrapper">
@@ -85,4 +88,11 @@ class ItemsList extends React.Component {
 }
 
 module.exports = ItemsList;
-// <p>Created at: {item.created_at}</p>/
+// for (let i=1; i <= counter; i++){
+//     let checkBtn = getElementById("recurringCheckbox" + i);
+//     if(checkBtn.className.includes("On")){
+//         checkBtn.checked = true;
+//     } else {
+//         checkBtn.checked = false;
+//     }
+// }

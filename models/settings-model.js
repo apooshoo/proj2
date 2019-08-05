@@ -57,10 +57,33 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let setSettings = (requestdata, callback) => {
+        console.log("entering model setSettings");
+        console.log("requestdata: ", requestdata);
+        let x = requestdata;
+        let user_id = parseInt(x.params.id);
+        //prepare dates for query
+        let pay_day_query = new Date(x.body.pay_day);
+        let next_pay_day_query = new Date(x.body.next_pay_day);
+        let values = [pay_day_query, next_pay_day_query, x.body.pay_amount, x.body.save_amount, user_id];
+        let query = `INSERT INTO settings (pay_day, next_pay_day, pay_amount, save_amount, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+        console.log(values)
+        dbPoolInstance.query(query, values, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(err, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
 
 
     return {
         show,
-        edit
+        edit,
+        setSettings,
     };
 };

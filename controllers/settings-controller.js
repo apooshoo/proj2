@@ -45,14 +45,36 @@ module.exports = (db) => {
             if(result){
                 console.log("edited result: ", result);
                 res.redirect(`/${req.params.id}/settings`);
-            }
+            } else {
+                console.log('error in editing!');
+            };
 
+        });
+    };
+
+    let setSettingsCC = (req, res) => {
+        console.log("entering setSettingsCC");
+        console.log("req.params: ", req.params);
+        console.log("req.body: ", req.body);
+        let requestdata = {
+            params: req.params,
+            body:req.body
+        };
+        db.settings.setSettings(requestdata, (err, result) => {
+            console.log("back in setSettingsCC");
+            if(result){
+                console.log("set settings: ", result);
+                res.redirect(`/${req.params.id}/settings`);
+            } else {
+                console.log('error in setting settings!');
+            };
         });
     };
 
     return {
         showSettings: showSettingsCC,
-        edit: editCC
+        edit: editCC,
+        setSettings: setSettingsCC
     };
 
 };

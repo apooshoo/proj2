@@ -98,11 +98,16 @@ module.exports = (db) => {
     let searchItemCC = (req, res) =>{
         console.log("entering searchItemCC");
         console.log("REQ.QUERY: ", req.query);
-        db.item.search(req.query, (err, result) =>{
+        let requestdata = {
+            query: req.query,
+            user_id: req.cookies.userid
+        };
+        db.item.search(requestdata, (err, result) =>{
             console.log("back in searchItemCC");
             console.log("Search Result(s): ", result);
             let data = {
-                itemsData: result
+                itemsData: result,
+                cookies: req.cookies
             };
             res.render('single-item', data);
         });
@@ -120,7 +125,17 @@ module.exports = (db) => {
             };
             res.render('single-item', data);
         });
-    }
+    };
+
+    let payItemCC = (req, res) => {
+        console.log("entering payItemCC");
+        console.log("req.params: ", req.params);
+        db.item.pay(req.params, (err, result) => {
+            console.log("back in payItemCC");
+            console.log("PAID: ", result);
+            res.redirect('/items');
+        });
+    };
 
    /**
      * ===========================================
@@ -134,7 +149,8 @@ module.exports = (db) => {
         deleteItem: deleteItemCC,
         sortAllItems: sortAllItemsCC,
         searchItems: searchItemCC,
-        getItem: getItemCC
+        getItem: getItemCC,
+        payItem: payItemCC
     };
 
 };

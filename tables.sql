@@ -8,12 +8,13 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS items (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
-	amount INTEGER,
+	amount NUMERIC(10, 2),
 	recurring BOOLEAN,
 	due_date TIMESTAMPTZ DEFAULT NULL,
 	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	creditor TEXT,
+	paid BOOLEAN DEFAULT FALSE,
 	user_id INTEGER
 );
 
@@ -22,6 +23,6 @@ CREATE TABLE IF NOT EXISTS settings (
 	user_id INTEGER,
 	pay_day TIMESTAMPTZ DEFAULT NULL,
 	next_pay_day TIMESTAMPTZ DEFAULT NULL,
-	pay_amount INTEGER,
-	save_amount INTEGER
+	pay_amount NUMERIC(10, 2),
+	save_amount NUMERIC(10, 2)
 );
