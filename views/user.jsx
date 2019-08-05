@@ -24,8 +24,7 @@ class User extends React.Component {
     let liquidPercentage = liquidAmt / stats.pay_amount * 100 + "%";
 
     let creditorsList = this.props.creditors;
-    let jData = JSON.stringify(this.props);
-    console.log(jData)
+
     return (
         <Layout cookies={cookies}>
             <div className="row mainwrapper">
