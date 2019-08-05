@@ -34,7 +34,7 @@ if( process.env.DATABASE_URL ){
   //otherwise we are on the local network
   var configs = {
       user: 'apooshoo',
-      password: 'neilgaiman1'
+      password: 'neilgaiman1',
       host: '127.0.0.1',
       database: 'proj2',
       port: 5432
