@@ -17,6 +17,7 @@ module.exports = (app, allModels) => {
   app.get('/items/search', itemCC.searchItems) //add id
   app.get('/items/single/:id', itemCC.getItem);
   app.put('/items/pay/:id', itemCC.payItem);
+  app.get('/items/history/:id', itemCC.getHistory);
 
 
   app.get('/', accountCC.start);
@@ -29,5 +30,6 @@ module.exports = (app, allModels) => {
 
   app.get('/:id/settings', settingsCC.showSettings);
   app.post('/:id/settings/set', settingsCC.setSettings);
+  // app.put('/:id/settings/set', settingsCC.resetSettings)
   app.put('/:id/settings/edit', settingsCC.edit);
 };

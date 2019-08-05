@@ -36,7 +36,12 @@ class User extends React.Component {
                         <p>Total Expenditure: {this.props.totalSpend.amount}</p>
                         <p>Liquid Amount: {liquidAmt} ({liquidPercentage})</p>
                         <p>PIE CHART HERE</p>
-                        <a href={"/"+cookies.userid+"/settings"}>Settings</a>
+                        <form method="GET" action={"/"+cookies.userid+"/settings"}>
+                            <button type="submit">Settings</button>
+                        </form>
+                        <form method="GET" action={"/items/history/"+cookies.userid}>
+                            <button>Pay History</button>
+                        </form>
 
                         <div id="piechart"></div>
                         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

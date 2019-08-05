@@ -75,6 +75,7 @@ module.exports = (db) => {
         showSettings: showSettingsCC,
         edit: editCC,
         setSettings: setSettingsCC
+        // resetSettings: resetSettingsCC
     };
 
 };

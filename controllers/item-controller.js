@@ -137,6 +137,24 @@ module.exports = (db) => {
         });
     };
 
+    let getHistoryCC = (req, res) => {
+        console.log("entering getHistoryCC");
+        console.log("req.params: ", req.params);
+        db.item.history(req.params, (err, result) => {
+            console.log("back in getHistoryCC");
+           if (result){
+                let data = {
+                    itemsData: result,
+                    cookies: req.cookies
+                };
+                res.render('home', data);
+            } else {
+                console.log("no history of paid items!");
+                res.redirect('/items');
+            }
+        });
+    };
+
    /**
      * ===========================================
      * Export controller functions as a module
@@ -150,7 +168,8 @@ module.exports = (db) => {
         sortAllItems: sortAllItemsCC,
         searchItems: searchItemCC,
         getItem: getItemCC,
-        payItem: payItemCC
+        payItem: payItemCC,
+        getHistory: getHistoryCC
     };
 
 };

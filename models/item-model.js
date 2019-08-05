@@ -197,8 +197,23 @@ module.exports = (dbPoolInstance) => {
 
     let pay = (requestdata, callback) => {
         console.log("entering model pay");
+        let id = parseInt(requestdata.id);
+        let query = `UPDATE items SET paid = true WHERE id = ${id} RETURNING *`;
+        dbPoolInstance.query(query, (err, result) => {
+            if(err){
+                callback(err, null);
+            } else if (result.rows.length > 0){
+                callback(null, result.rows);
+            } else {
+                callback(null, null);
+            };
+        });
+    };
+
+    let history = (requestdata, callback) => {
+        console.log("entering model history");
         let user_id = parseInt(requestdata.id);
-        let query = `UPDATE items SET paid = true WHERE user_id = ${user_id} RETURNING *`;
+        let query = `SELECT * FROM items WHERE user_id = ${user_id} AND paid = true`;
         dbPoolInstance.query(query, (err, result) => {
             if(err){
                 callback(err, null);
@@ -221,6 +236,7 @@ module.exports = (dbPoolInstance) => {
         getItem,
         getCreditors,
         getTotalSpend,
-        pay
+        pay,
+        history
     };
 };
