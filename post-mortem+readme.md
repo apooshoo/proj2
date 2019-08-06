@@ -1,4 +1,4 @@
-				POSTMORTEM
+				POSTMORTEM (readme at the bottom)
 	1: What in my process and approach to this project would I do differently next time?
 
 I would outline the big picture first so I would be able to prepare my 'tools' properly. EG: I made the mistake of rushing out a MVP with pure express and react without any scripts. However, when I decided to make pie charts etc, I realised that (not knowing how to transfer the data from jsx to script.js) I would have to re-do my entire code to make it AJAX centered (I didn't).
@@ -21,3 +21,9 @@ Experimentation with SQL functions went well (timestamps, sums, other types like
 				READMEEEEEE
 	I made an expenses planner that allowed you to create, edit and delete cards, list them and search for them, as well as sort them by field. I also added an Accounts overview which let me experiment with different SQL commands (eg. finding the largest creditor using SUM) 
 	Used mostly express and react. virtually no DOM.
+
+	HABITS:
+	Poor: I focused on implementing many functions but did not maintain clear focus on my core features throughout, like the visual element(piecharts etc). 
+
+	OVERALL: 
+	Quite comfortable: The first day of each of express, react and MVC were rough but things were okay on the whole.
