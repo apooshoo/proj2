@@ -12,12 +12,12 @@ class ItemsSelect extends React.Component {
         return (
 
             <form method="GET" action="/items/single/">
-                <div className="form-group">
+                <div className="form-group w-50 mx-auto">
                     <select className="form-control" name="id">
                         <option selected disabled>List of unpaid items</option>
                         {itemsList}
                     </select>
-                    <button className="btn btn-primary mt-2" type="submit">Get item</button>
+                    <button className="btn btn-dark mt-2" type="submit">Get item</button>
                 </div>
             </form>
 

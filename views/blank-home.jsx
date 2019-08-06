@@ -18,27 +18,29 @@ class BlankHome extends React.Component {
     return (
         <Layout cookies={cookies}>
             <div className="row mainwrapper">
-                <div className="col col-lg-8 offset-lg-2 col-12">
+                <div className="col col-lg-6 offset-lg-3 col-12">
                     <div className="card my-1">
-                        <div className="card-header text-white bg-primary">Create Item Card
+                        <div className="card-header">
+                        <h5 className="font-weight-light">Hello, {cookies.username}! We couldn't find any items to show you, so go ahead and make one using the form right here!</h5>
                         </div>
                         <div className="card-body bg-light px-4 py-4">
                             <form method="POST" action="/items/new">
-                                <input type="text" className="card-input form-control w-50" name="name" placeholder="Input name of item"/>
-                                <input type="text" className="card-input form-control w-50" name="amount" placeholder="Input amount in dollars, eg. 1.23"/>
-                                <input type="text" className="card-input form-control w-50" name="creditor" placeholder="Input name of creditor"/>
-                                <div className="checkbox">
-                                  <label>
+                                <input type="text" className="card-input form-control w-75 mx-auto" name="name" placeholder="Input name of item"/>
+                                <input type="text" className="card-input form-control w-75 mx-auto" name="amount" placeholder="Input amount in dollars, eg. 1.23"/>
+                                <input type="text" className="card-input form-control w-75 mx-auto" name="creditor" placeholder="Input name of creditor"/>
+                                <div className="checkbox w-75 mx-auto mt-2">
+                                  <label className="font-weight-light">
                                     <input type="checkbox" name="recurring" data-toggle="toggle"/>
                                     Check this box for monthly payments
                                   </label>
                                 </div>
-                                <label className="font-weight-light ml-2" htmlFor="due_date-input">Due Date:</label>
-                                <input type="date" className="card-input form-control w-50" name="due_date" defaultValue={currentDate}/>
-                                <button className="btn btn-primary" type="submit">Create</button>
+                                <div className="w-75 mx-auto"><span className="font-weight-light">Due Date:</span></div>
+                                <input type="date" className="card-input form-control w-75 mx-auto" name="due_date" defaultValue={currentDate}/>
+                                <div className="w-75 mx-auto mt-2">
+                                    <button className="btn btn-primary" type="submit">Create</button>
+                                </div>
                             </form>
                         </div>
-                        <p>This acc has no items at all!</p>
                     </div>
                 </div>
             </div>

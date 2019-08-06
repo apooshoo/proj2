@@ -1,6 +1,15 @@
 body{
 	max-width: 100%;
 	width: 100%;
+  background-image: url("/box.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+.card{
+	opacity: .9;
 }
 
 .start-card{

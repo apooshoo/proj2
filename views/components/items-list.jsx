@@ -68,7 +68,7 @@ class ItemsList extends React.Component {
 
                                 <button className="btn btn-primary col-3" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=PUT"}>Edit</button>
                                 <button className="btn btn-danger col-3" type="submit" formMethod="POST" formAction={"/items/"+item.id+"?_method=DELETE"}>Delete</button>
-                                <button className="btn btn-primary col-3 offset-3" type="submit" formMethod="POST" formAction={"/items/pay/"+item.id+"?_method=PUT"}>Pay</button>
+                                <button className="btn btn-success col-3 offset-3" type="submit" formMethod="POST" formAction={"/items/pay/"+item.id+"?_method=PUT"}>Pay</button>
 
                         </div>
                     </div>

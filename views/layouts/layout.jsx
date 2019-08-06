@@ -85,7 +85,7 @@ class Layout extends React.Component {
                                             <div className="checkbox">
                                               <label>
                                                 <input type="checkbox" name="recurring" data-toggle="toggle"/>
-                                                Check this box for monthly payments
+                                                <span className="font-weight-light">Check this box for monthly payments</span>
                                               </label>
                                             </div>
                                             <label className="font-weight-light ml-2" htmlFor="due_date-input">Due Date:</label>

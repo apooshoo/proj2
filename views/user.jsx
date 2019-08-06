@@ -29,28 +29,31 @@ class User extends React.Component {
         <Layout cookies={cookies}>
             <div className="row mainwrapper">
                 <div className="col col-lg-10 offset-lg-1 col-sm-12 col-12">
-                    <div className="col-12 user-wrapper">
-                        <p>Payday: {pay_day}</p>
-                        <p>Next payday: {next_pay_day}</p>
-                        <p>Days to next payday: {daysToPayday}</p>
-                        <p>Total Expenditure: {this.props.totalSpend.amount}</p>
-                        <p>Liquid Amount: {liquidAmt} ({liquidPercentage})</p>
-                        <p>PIE CHART HERE</p>
-                        <form method="GET" action={"/"+cookies.userid+"/settings"}>
-                            <button type="submit">Settings</button>
-                        </form>
-                        <form method="GET" action={"/items/history/"+cookies.userid}>
-                            <button>Pay History</button>
-                        </form>
-
-
-
+                    <div className="card user-wrapper w-75 mx-auto">
+                        <div className="card-header bg-light text-dark">Current Settings
+                        </div>
+                        <div className="card-body">
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">Payday: {pay_day}</li>
+                                <li className="list-group-item">Next payday: {next_pay_day}</li>
+                                <li className="list-group-item">Days to next payday: {daysToPayday}</li>
+                                <li className="list-group-item">Total Expenditure: ${this.props.totalSpend.amount}</li>
+                                <li className="list-group-item">Liquid Amount: ${liquidAmt} ({liquidPercentage})</li>
+                            </ul>
+                            <div className="collapsibles-list">
+                                <CreditorsList creditorsList={creditorsList}></CreditorsList>
+                            </div>
+                        </div>
+                        <div className="card-footer">
+                             <form>
+                                <button className="btn btn-dark" formMethod="GET" formAction={"/"+cookies.userid+"/settings"}>Settings</button>
+                                <button className="btn btn-dark ml-3" formMethod="GET" formAction={"/items/history/"+cookies.userid}>Pay History</button>
+                            </form>
+                        </div>
 
 
                     </div>
-                    <div className="col col-10 offset-1 collapsibles-list">
-                        <CreditorsList creditorsList={creditorsList}></CreditorsList>
-                    </div>
+
 
                 </div>
             </div>
